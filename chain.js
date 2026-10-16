@@ -8,12 +8,13 @@ const tag=s=>{if(!el){el=d.createElement('div');el.id='chon';el.setAttribute('ar
 d.addEventListener('animationend',e=>{if(e.target===el&&e.animationName==='chout')el.classList.remove('out')});
 addEventListener('resize',pos);addEventListener('scroll',pos,{passive:true});
 
-let on=0,x=0,r=0,raf=0;const BASE=0.8;
+let on=0,x=0,r=0,raf=0,lastTouch=0;addEventListener('touchstart',()=>{lastTouch=Date.now()},{passive:true,capture:true});const BASE=0.8;
 const step=()=>{r+=((on?1:0)-r)*(on?0.06:0.05);x+=r*BASE;
 h.style.setProperty('--cx',x.toFixed(2)+'px');h.style.setProperty('--cxb',(-x).toFixed(2)+'px');
 if(on||r>.005)raf=requestAnimationFrame(step);else{raf=0;r=0}};
 const kick=()=>{if(!raf)raf=requestAnimationFrame(step)};
 d.addEventListener('contextmenu',e=>{e.preventDefault(); /* no browser menu anywhere */
 if(e.target.closest('#lb,#mc,#pt')||d.querySelector('#lb.open'))return;
+if(e.pointerType==='touch'||Date.now()-lastTouch<1500)return; /* mobile long-press: no chain toggle */
 on=!on;h.classList.toggle('chain-on',!!on);tag(on);kick()});
 })})();
