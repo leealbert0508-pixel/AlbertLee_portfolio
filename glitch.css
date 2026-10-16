@@ -1,0 +1,7 @@
+.gl-run{animation:glJit .09s steps(2) infinite}
+@keyframes glJit{0%{text-shadow:1.5px 0 rgba(230,0,35,.85),-1.5px 0 rgba(255,255,255,.6)}50%{text-shadow:-1.5px 0 rgba(230,0,35,.85),1.5px 0 rgba(255,255,255,.6)}100%{text-shadow:none}}
+/* locked rows force animation:none!important; re-allow the glitch there */
+.e.locked .gl-run,.e.locked.gl-run{animation:glJit .09s steps(2) infinite!important}
+.e.locked .rd i.gl-bar{animation:glBar .52s steps(8) forwards!important}
+@keyframes glBar{0%{clip-path:inset(0 100% 0 0);opacity:.3}25%{clip-path:inset(0 60% 0 0);opacity:1;background:#e60023}37%{opacity:.2}50%{clip-path:inset(0 30% 0 0);background:#2a2a2a;opacity:1}62%{background:#5a1018}75%{clip-path:inset(0 8% 0 0);opacity:.4}100%{clip-path:inset(0 0 0 0);opacity:1;background:#2a2a2a}}
+@media (prefers-reduced-motion:reduce){.gl-run,.e.locked .gl-run,.e.locked.gl-run,.e.locked .rd i.gl-bar{animation:none!important}}

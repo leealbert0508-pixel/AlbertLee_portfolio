@@ -1,0 +1,40 @@
+#pt{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;visibility:hidden}
+#pt.on{visibility:visible;pointer-events:auto}
+html.pt-pre #pt,html.pt-pre::before{visibility:visible}
+html.pt-pre::before{content:"";position:fixed;inset:0;background:#070707;z-index:9998}
+html.pt-pre.pt-ready::before{display:none}
+#pt .p{position:absolute;top:-10%;bottom:-10%;left:-30%;width:160%;transform:translateX(-110%) skewX(-18deg);will-change:transform}
+#pt .p1{background:#e60023}
+#pt .p2{background:#070707}
+#pt .p3{background:#070707;box-shadow:inset 0 0 0 1px #1a1a1a}
+#pt .hz{position:absolute;left:-10%;width:120%;top:68%;height:26px;background:repeating-linear-gradient(-45deg,#e60023 0 18px,#070707 18px 36px);transform:translateX(-110%) skewY(-3deg);opacity:0}
+#pt .c{position:absolute;width:44px;height:44px;border:0 solid #e60023;opacity:0}
+#pt .c1{top:24px;left:24px;border-top-width:4px;border-left-width:4px}
+#pt .c2{top:24px;right:24px;border-top-width:4px;border-right-width:4px}
+#pt .c3{bottom:24px;left:24px;border-bottom-width:4px;border-left-width:4px}
+#pt .c4{bottom:24px;right:24px;border-bottom-width:4px;border-right-width:4px}
+#pt .t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(1.08);text-align:center}
+#pt .t b{font:400 clamp(64px,16vw,220px)/.9 Anton,Oswald,Impact,sans-serif;letter-spacing:.04em;color:transparent;-webkit-text-stroke:2px #f2f2f2;text-transform:uppercase}
+#pt .t i{font:700 clamp(14px,2.2vw,24px)/1.4 "Noto Sans JP",sans-serif;font-style:normal;color:#e60023;letter-spacing:.4em;margin-top:.6em}
+/* cover */
+#pt.cov .p{transition:transform .32s cubic-bezier(.7,0,.3,1);transform:translateX(0) skewX(-18deg)}
+#pt.cov .p2{transition-delay:.04s}
+#pt.cov .p3{transition-delay:.08s}
+#pt.cov .hz{transition:transform .3s .1s cubic-bezier(.7,0,.3,1),opacity .1s .1s;transform:translateX(0) skewY(-3deg);opacity:1}
+#pt.cov .c{animation:ptc .3s .2s both}
+#pt.cov .t{transition:opacity .18s .22s,transform .3s .22s cubic-bezier(.2,.8,.2,1);opacity:1;transform:scale(1)}
+/* static covered */
+#pt.full .p{transform:translateX(0) skewX(-18deg);transition:none}
+#pt.full .hz{transform:translateX(0) skewY(-3deg);opacity:1;transition:none}
+#pt.full .t{opacity:1;transform:none;transition:none}
+#pt.full .c{opacity:1}
+/* reveal */
+#pt.rev .p{transition:transform .38s cubic-bezier(.7,0,.3,1);transform:translateX(110%) skewX(-18deg)}
+#pt.rev .p3{transition-delay:0s}
+#pt.rev .p2{transition-delay:.04s}
+#pt.rev .p1{transition-delay:.08s}
+#pt.rev .hz{transition:transform .3s cubic-bezier(.7,0,.3,1),opacity .2s .1s;transform:translateX(110%) skewY(-3deg);opacity:0}
+#pt.rev .t{transition:opacity .15s,transform .3s;opacity:0;transform:translateX(6%)}
+#pt.rev .c{transition:opacity .15s;opacity:0}
+@keyframes ptc{0%{opacity:0;transform:scale(1.4)}40%{opacity:1}60%{opacity:.3}100%{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){#pt,html.pt-pre::before{display:none!important}}

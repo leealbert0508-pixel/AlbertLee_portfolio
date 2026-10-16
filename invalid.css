@@ -1,0 +1,10 @@
+.nx-host{position:relative}
+.nx-shake{animation:nxShake .3s cubic-bezier(.36,.07,.19,.97)}
+@keyframes nxShake{10%,90%{translate:-1px 0}20%,80%{translate:3px 0}30%,50%,70%{translate:-5px 0}40%,60%{translate:5px 0}}
+.nx{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;pointer-events:none;z-index:30;animation:nxFade .62s ease-out forwards;filter:drop-shadow(0 0 1px #000) drop-shadow(0 0 1px #000) drop-shadow(0 0 3px rgba(0,0,0,.8))}
+.nx line{stroke:#ff1a3c;stroke-width:4;paint-order:stroke;stroke-linecap:square;stroke-dasharray:30;stroke-dashoffset:30;animation:nxDraw .14s ease-out forwards}
+.nx line+line{animation-delay:.08s}
+@keyframes nxDraw{to{stroke-dashoffset:0}}
+@keyframes nxFade{0%,55%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.25)}}
+#contact{scroll-margin-top:90px}
+@media(prefers-reduced-motion:reduce){.nx-shake{animation:none!important}.nx,.nx line{stroke:#ff1a3c;animation:none!important;stroke-dashoffset:0}.nx{opacity:1;transition:opacity .3s .4s}}

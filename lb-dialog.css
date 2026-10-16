@@ -1,0 +1,42 @@
+/* lb-dialog: visual-novel info box for works lightbox */
+#lb .vn{position:absolute;left:50%;bottom:24px;width:min(1000px,calc(100% - 32px));transform:translate(-50%,120%);background:rgba(10,10,10,.95);border-top:2px solid #e60023;padding:30px 30px 18px;cursor:default;transition:transform .35s cubic-bezier(.2,.8,.2,1);box-sizing:border-box;z-index:2}
+#lb.open .vn.on{transform:translate(-50%,0)}
+#lb .vn h4{position:absolute;top:-17px;left:22px;margin:0;background:#e60023;color:#fff;font:400 17px/1 Anton,sans-serif;letter-spacing:.1em;padding:8px 26px 8px 14px;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+#lb .vn h4 small{font:700 11px "Noto Sans JP",sans-serif;letter-spacing:.2em;margin-left:10px}
+#lb .vn .q{margin:0;color:#f2f2f2;font:700 18px/1.6 "Noto Sans JP",sans-serif}
+#lb .vn .q::before{content:"「";color:#e60023}#lb .vn .q::after{content:"」";color:#e60023}
+#lb .vn .meta{margin:8px 0 0;color:#888;font:500 13px/1.6 Oswald,"Noto Sans JP",sans-serif;letter-spacing:.04em}
+#lb .vn .meta b{color:#e60023;font-weight:500;margin-right:6px}
+#lb .vn .meta span{margin-right:18px;display:inline-block}
+#lb .vn .ph{color:#555;font-style:italic}
+#lb .vn .nx{position:absolute;right:20px;bottom:12px;color:#e60023;animation:vnbl 1s steps(2) infinite}
+@keyframes vnbl{50%{opacity:0}}
+@media(max-width:600px){#lb .vn{padding:26px 18px 16px;bottom:12px}#lb .vn .q{font-size:15px}#lb .vn .meta{font-size:12px}}
+#lb .vn{cursor:pointer}
+#lb .vn .nx{position:absolute!important;right:18px!important;bottom:10px!important;left:auto!important;top:auto!important;display:block;font-size:14px;line-height:1;animation:vnnx .8s ease-in-out infinite}
+@keyframes vnnx{0%,100%{transform:translateY(-2px);opacity:1}50%{transform:translateY(3px);opacity:.4}}
+#lb .vn .meta{padding-right:30px}
+#lb .vn:hover{border-top-color:#fff}
+#lb.closing .vn{animation:vnout .32s cubic-bezier(.6,0,.4,1) forwards}
+#lb.closing .vn::after{content:"";position:absolute;inset:0;background:#e60023;animation:vnflash .32s ease-out forwards;pointer-events:none}
+#lb.closing .vn .nx{animation:none;transform:translateY(8px);opacity:0;transition:.15s}
+#lb.closing img{animation:vnimg .32s ease-in forwards}
+#lb.closing{animation:vnbg .32s ease-in forwards}
+@keyframes vnflash{0%{opacity:.55;clip-path:inset(0 100% 0 0)}40%{opacity:.55;clip-path:inset(0 0 0 0)}100%{opacity:0;clip-path:inset(0 0 0 0)}}
+@keyframes vnout{0%,35%{transform:translate(-50%,0)}100%{transform:translate(-50%,130%)}}
+@keyframes vnimg{to{opacity:0;transform:scale(.96) translateY(-10px)}}
+@keyframes vnbg{60%{opacity:1}to{opacity:0}}
+#lb .vn h4{z-index:3}#lb.closing .vn::after{z-index:1}#lb .vn .q,#lb .vn .meta{position:relative;z-index:2}
+#lb .vn{overflow:visible}#lb img{z-index:1}#lb .vn{z-index:5}
+
+/* page 2: repost notice */
+#lb .vn.p2 .meta{visibility:hidden}#lb .vn.p2 .q{min-height:1.6em}
+
+/* VN textbox slide-in on open */
+#lb .vn.enter{animation:vnin .42s cubic-bezier(.15,.85,.25,1) .14s both}
+#lb .vn.enter h4{animation:vntab .3s cubic-bezier(.2,.9,.3,1.3) .44s both}
+#lb .vn.enter .nx{animation:vnfade .2s .56s both,vnnx .8s ease-in-out .76s infinite}
+@keyframes vnin{from{transform:translate(-50%,calc(100% + 60px))}to{transform:translate(-50%,0)}}
+@keyframes vntab{from{transform:translateY(22px);opacity:0}to{transform:none;opacity:1}}
+@keyframes vnfade{from{opacity:0}to{opacity:1}}
+#lb.closing .vn.enter{animation:vnout .32s cubic-bezier(.6,0,.4,1) forwards}

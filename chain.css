@@ -1,0 +1,10 @@
+/* chain mode: red/black dashed strips slide like a chain (top & bottom opposite) */
+header::after,footer::before{background-image:repeating-linear-gradient(-45deg,var(--acc,#e60023) 0 12px,#000 12px 24px)!important;background-position:var(--cx,0px) 0!important;pointer-events:none}
+footer::before{content:"";position:absolute;left:0;right:0;top:-6px;height:6px;background-position:var(--cxb,0px) 0!important}
+.pg-home header::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:6px}
+#chon{position:fixed;right:14px;z-index:19;display:flex;align-items:center;padding:0 12px;background:var(--acc,#e60023);clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);font:700 10px/1 Oswald,sans-serif;pointer-events:none;visibility:hidden}
+#chon b{font:400 12px/1 Anton,Oswald,sans-serif;letter-spacing:.18em;color:#000}
+#chon.in{visibility:visible;animation:chin .32s steps(6) both}
+#chon.out{visibility:visible;animation:chout .26s steps(5) both}
+@keyframes chin{0%{opacity:0;transform:translateX(12px) skewX(-20deg);clip-path:inset(0 0 60% 0)}30%{opacity:1;transform:translateX(-6px);clip-path:inset(40% 0 0 0)}55%{transform:translateX(3px);filter:drop-shadow(-3px 0 #e60023)}80%{transform:none;clip-path:inset(0 0 20% 0)}100%{opacity:1;transform:none}}
+@keyframes chout{0%{opacity:1}40%{transform:translateX(-5px) skewX(15deg);clip-path:inset(30% 0 30% 0)}70%{opacity:.6;transform:translateX(8px);clip-path:inset(48% 0 48% 0)}100%{opacity:0;clip-path:inset(50% 0 50% 0)}}
