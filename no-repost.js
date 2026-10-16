@@ -2,8 +2,10 @@
 (()=>{const d=document;let els,t1,t2,act=0; /* act: a warning is playing; further triggers ignored until it fully ends */
 const T={ja:['禁止転載','無断転載・保存を禁止します'],en:['<span class="k">NO</span>REPOSTING','COPY / SAVE PROHIBITED']};
 function place(){if(!els)return;const r=d.documentElement.style,m=d.querySelector('#lb.open img,#lb.open video');if(innerWidth>700||!m){['--nrt','--nrb','--nrbb'].forEach(k=>els[0].style.removeProperty(k)||els[1].style.removeProperty(k));return}
-const b=m.getBoundingClientRect(),h0=els[0].offsetHeight||70,h1=els[1].offsetHeight||70,vh=innerHeight;
-els[0].style.setProperty('--nrt',Math.max(6,Math.min(b.top-h0-8,vh-h0-h1-12))+'px');els[1].style.setProperty('--nrb',Math.max(h0+12,Math.min(b.bottom+28,vh-h1-6))+'px')}
+const b=m.getBoundingClientRect(),cs=getComputedStyle(m),bw=parseFloat(cs.borderTopWidth)||0,sh=(cs.boxShadow.match(/(-?[\d.]+)px\s+(-?[\d.]+)px/)||[0,0,0]),sy=Math.max(0,parseFloat(sh[2])||0),h0=els[0].offsetHeight||70,h1=els[1].offsetHeight||70,vh=innerHeight,G=28;
+/* visual image box: top = inside the (black, invisible) border; bottom = bottom of the red offset frame */
+const vt=b.top+bw,vb=b.bottom+sy,g=Math.max(8,Math.min(G,vt-h0-6,vh-6-h1-vb)); /* same gap above and below; shrink both if space is tight */
+els[0].style.setProperty('--nrt',Math.max(6,Math.min(vt-g-h0,vh-h0-h1-12))+'px');els[1].style.setProperty('--nrb',Math.max(h0+12,Math.min(vb+g,vh-h1-6))+'px')}
 addEventListener('resize',place);
 function show(){if(!els){els=['l','r'].map(c=>{const e=d.createElement('div');e.className='nr '+c;e.setAttribute('aria-hidden','true');d.body.appendChild(e);return e});els[0].setAttribute('role','alert');els[0].removeAttribute('aria-hidden')}
 const s=T[d.documentElement.lang==='en'?'en':'ja'];
