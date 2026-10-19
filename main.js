@@ -14,7 +14,7 @@ d.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===t.dataset
 const lb=d.getElementById('lb');if(!lb)return;
 const li=lb.querySelector('img');
 const close=()=>{lb.classList.remove('open');d.body.style.overflow=''};
-d.querySelectorAll('.grid img').forEach(i=>i.addEventListener('click',()=>{li.src=i.dataset.anim||i.currentSrc||i.src;li.alt=i.alt;lb.classList.add('open');d.body.style.overflow='hidden'}));
+d.querySelectorAll('.grid img').forEach(i=>i.addEventListener('click',()=>{li.src=i.dataset.anim||i.dataset.full||i.currentSrc||i.src;li.alt=i.alt;lb.classList.add('open');d.body.style.overflow='hidden'}));
 lb.addEventListener('click',close);
 const x=d.createElement('button');x.type='button';x.className='lbx';x.textContent='✕ ESC';x.setAttribute('aria-label','Close');lb.appendChild(x);
 d.addEventListener('keydown',e=>{if(e.key==='Escape')close()});

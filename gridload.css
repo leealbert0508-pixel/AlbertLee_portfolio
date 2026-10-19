@@ -1,0 +1,8 @@
+/* works grid: loading placeholder (dark + subtle red scanline sweep) and fade-in */
+.grid img:not(.gl-done){color:transparent;background-color:#111;
+ background-image:linear-gradient(180deg,transparent 0 46%,rgba(230,0,35,.16) 50%,transparent 54%),repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 3px);
+ background-size:100% 220%,auto;background-repeat:no-repeat,repeat;animation:glscan 1.6s linear infinite}
+@keyframes glscan{from{background-position:0 120%,0 0}to{background-position:0 -20%,0 0}}
+.grid img.gl-in{animation:glin .45s ease-out}
+@keyframes glin{from{filter:brightness(.12) saturate(.85)}}
+@media(prefers-reduced-motion:reduce){.grid img:not(.gl-done),.grid img.gl-in{animation:none}}

@@ -30,12 +30,12 @@ function build(){m=d.createElement('div');m.id='hc';m.className='vB';m.setAttrib
    if(k==='cp'){busy=true;const t=T();copy(S[sel].cp).then(ok=>{m.classList.remove('ready');type(m.querySelector('.q'),ok?t.done:t.fail);setTimeout(()=>{busy=false;close()},ok?900:2200)});return}
    close();return}
   if(e.target===m||e.target.closest('.vn'))close()})}
-function open(){clearTimeout(ct);busy=false;if(m)m.remove();build();m.querySelector('.ch').innerHTML='';void m.offsetWidth;
- requestAnimationFrame(()=>{m.classList.add('on');setTimeout(()=>step(1),520)})}
+function open(k){clearTimeout(ct);busy=false;if(m)m.remove();build();m.querySelector('.ch').innerHTML='';void m.offsetWidth;
+ requestAnimationFrame(()=>{m.classList.add('on');setTimeout(()=>{if(k&&S[k]){sel=k;step(2)}else step(1)},520)})}
 function close(){clearInterval(tw);if(!m||!m.classList.contains('on')||m.classList.contains('closing'))return;const mm=m;mm.classList.add('closing');clearTimeout(ct);let done=0;
  const fin=()=>{if(done)return;done=1;clearTimeout(ct);mm.style.transition='none';mm.classList.remove('on','closing','ready');void mm.offsetWidth;mm.style.transition=''};
  const v=mm.querySelector('.vn');v.addEventListener('animationend',function f(e){if(e.target===v&&e.animationName==='hccvout'){v.removeEventListener('animationend',f);fin()}});ct=setTimeout(fin,650)}
-window.addEventListener('click',e=>{if(e.button!==0)return;const a=e.target.closest&&e.target.closest('[data-hdr-contact]');if(!a)return;e.preventDefault();e.stopImmediatePropagation();open()},true); /* capture: beat page-transition / hash-scroll handlers */
+window.addEventListener('click',e=>{if(e.button!==0)return;const a=e.target.closest&&e.target.closest('[data-hdr-contact]');if(!a)return;e.preventDefault();e.stopImmediatePropagation();open(a.getAttribute('data-hdr-contact'))},true); /* capture: beat page-transition / hash-scroll handlers */
 d.addEventListener('keydown',e=>{if(!m||!m.classList.contains('on'))return;if(e.key==='Escape')close();else if(m.kb)m.kb(e)});
-window.hdrContact={open,close};
+window.hdrContact={open,close};window.openHdrContact=open; /* open('x'|'email'|'discord') jumps to step 2 */
 })();

@@ -50,7 +50,7 @@ const setupSprite=(i,still,anim,m)=>{const c=mkCanvas(i);let sheet=null,ready=nu
  function off(){hover=false;playing=false;clearTimeout(timer)} /* canvas keeps the frame it last painted */
  i.addEventListener('mouseenter',on);i.addEventListener('mouseleave',off);i.addEventListener('focus',on);i.addEventListener('blur',off);
  new ResizeObserver(()=>{if(shown&&sheet){const k=idx;idx=(idx-1+m.n)%m.n;paint();idx=k}}).observe(i);
- i._anim={canvas:c,get frame(){return idx},get playing(){return playing},mode:'sprite'};setTimeout(()=>load().catch(()=>{}),1200)};
+ i._anim={canvas:c,get frame(){return idx},get playing(){return playing},mode:'sprite'};const pre=()=>setTimeout(()=>load().catch(()=>{}),1500);if(d.readyState==='complete')pre();else addEventListener('load',pre,{once:true})}; /* sheet preload waits for page load so it never competes with tile thumbnails */
 
 const prep=()=>{d.querySelectorAll('img[data-anim]').forEach(i=>{if(i._anim)return;const still=i.getAttribute('src'),anim=i.dataset.anim;
   const m=(window.ANIM_FRAMES||{})[anim];if(m)setupSprite(i,still,anim,m);else if(HAS_DEC&&/^https?:$/.test(location.protocol))setupDec(i,still,anim);else setupFallback(i,still,anim,mkCanvas(i),false)});

@@ -42,7 +42,7 @@ cover(k).then(()=>{location.href=u.href});
 }
 d.addEventListener('click',onClick);
 d.addEventListener('DOMContentLoaded',()=>{
-if(flag){ss.del();if(RM){hide();return}title(flag);el.className='on full';const F=d.fonts&&d.fonts.ready;Promise.race([F||Promise.resolve(),new Promise(r=>setTimeout(r,700))]).then(()=>requestAnimationFrame(()=>reveal()))}
+if(flag){ss.del();if(RM){hide();return}title(flag);el.className='on full';const F=d.fonts&&d.fonts.ready,to=ms=>new Promise(r=>setTimeout(r,ms)),I=[...d.querySelectorAll('.panel.on .grid img')].slice(0,3).map(i=>i.decode?i.decode().catch(()=>{}):Promise.resolve());Promise.all([Promise.race([F||Promise.resolve(),to(700)]),Promise.race([Promise.all(I),to(600)])]).then(()=>requestAnimationFrame(()=>reveal()))}
 });
 W.addEventListener('pageshow',e=>{if(e.persisted){ss.del();hide()}});
 })();
